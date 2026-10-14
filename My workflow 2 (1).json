@@ -1,0 +1,401 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1AZmIv7dud6CKvCnt7VrYf-o0Yww-EV02nQWBNqrV_Yw",
+          "mode": "list",
+          "cachedResultName": "Ecommerce Customer Lifecycle Test DataCuster",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AZmIv7dud6CKvCnt7VrYf-o0Yww-EV02nQWBNqrV_Yw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AZmIv7dud6CKvCnt7VrYf-o0Yww-EV02nQWBNqrV_Yw/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -336,
+        -144
+      ],
+      "id": "b7c581fe-f4b5-4b2a-801c-336229c4afd1",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "EreL9Xi0I93wXIvJ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "f3f95c70-5eb8-4afc-a1d6-dd76696b00fe",
+              "leftValue": "={{$json[\"Customer Type\"]}}",
+              "rightValue": "New Lead",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -176,
+        -144
+      ],
+      "id": "cbe441d6-4d88-418e-8f34-6b76b2cd3dab",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "sendTo": "=jummybae4real@gmail.com",
+        "subject": "=Welcome!{{ $json[\"Customer Name \"] }} We are exited to have you",
+        "message": "=Hi {{$json[\"Customer Name\"]}},\n\nWelcome! We're excited to have you with us.\n\nWe noticed you're interested in {{$json[\"Product\"]}}. We'll be sending you useful information, updates, and offers to help you get the most from your experience.\n\nIf you have any questions, simply reply to this email. We'd be happy to help.\n\nBest regards,\nYour Store Team",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        96,
+        -256
+      ],
+      "id": "7b751c4c-bae7-4251-8c3f-0f28d1417745",
+      "name": "Send a message",
+      "webhookId": "68da733b-241b-4f69-b260-cec3b67f2501",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ipw5M1cFGBErPhzL",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        704,
+        -208
+      ],
+      "id": "9120b8c6-c233-4c53-a509-4dedb89790da",
+      "name": "Wait",
+      "webhookId": "76573d64-e644-421f-8307-24b9453be0a6"
+    },
+    {
+      "parameters": {
+        "sendTo": "=jummybae4real@gmail.com",
+        "subject": "Welcome! We're excited to have you 😊",
+        "message": "=Hi {{$json[\"Customer Name\"]}},  Welcome! We're excited to have you with us.  We noticed you're interested in {{$json[\"Product\"]}}. We'll be sending you useful information, updates, and offers to help you get the most from your experience.  If you have any questions, simply reply to this email. We'd be happy to help.  Best regards, Your Store Team",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        912,
+        -208
+      ],
+      "id": "1103caee-2c0b-4363-b971-703c81c9171b",
+      "name": "Send a message1",
+      "webhookId": "8dac4394-bb82-40e0-b9fd-a9b4851afe94",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "BIGYPA2hrV6ZCmWR",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "jummybae4real@gmail.com",
+        "subject": "Welcome back Email",
+        "message": "=Hi {{ $json[\"Customer Name \"] }},  Thank you for choosing us! We truly appreciate your support.  We hope you're enjoying your {{$json[\"Product\"]}}. We're here to help you get the most out of your experience.  Keep an eye on your inbox for helpful tips, product updates, and special offers.  Thank you for being part of our customer community.  Warm regards, Your Store Team",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -96,
+        16
+      ],
+      "id": "104305bc-be57-4c36-895e-89b581d716cc",
+      "name": "Send a message2",
+      "webhookId": "1e8b32e1-7c07-4cd0-aeda-bb02014272ec",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ipw5M1cFGBErPhzL",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1AZmIv7dud6CKvCnt7VrYf-o0Yww-EV02nQWBNqrV_Yw",
+          "mode": "list",
+          "cachedResultName": "Ecommerce Customer Lifecycle Test DataCuster",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AZmIv7dud6CKvCnt7VrYf-o0Yww-EV02nQWBNqrV_Yw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AZmIv7dud6CKvCnt7VrYf-o0Yww-EV02nQWBNqrV_Yw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Customer Name ": "={{ $('Get row(s) in sheet').item.json[\"Customer Name \"] }}",
+            "Email": "={{ $('Get row(s) in sheet').item.json.Email }}",
+            "Customer Type": "={{ $('Get row(s) in sheet').item.json[\"Customer Type\"] }}",
+            "Product": "={{ $('Get row(s) in sheet').item.json.Product }}",
+            "Status": "={{ $('Get row(s) in sheet').item.json.Status }} 3.",
+            "Welcome Sent": "yes"
+          },
+          "matchingColumns": [
+            "Email"
+          ],
+          "schema": [
+            {
+              "id": "Customer Name ",
+              "displayName": "Customer Name ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Customer Type",
+              "displayName": "Customer Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Product",
+              "displayName": "Product",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Welcome Sent",
+              "displayName": "Welcome Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        528,
+        -208
+      ],
+      "id": "e83a11b9-a1be-4398-8f6f-645da34de909",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "EreL9Xi0I93wXIvJ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a571a93f-4747-4b20-8e82-7a41fffa3e9a",
+              "leftValue": "={{ $json[\"Welcome Sent\"] }}",
+              "rightValue": "No",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        176,
+        -112
+      ],
+      "id": "47dfd617-f4c8-4bc6-bd52-97f19a85f0b7",
+      "name": "If1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "22176afe-f927-4328-9954-7bad6811c7fa",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "81522f02ee34e7f554deecbb0aa53b3307dd22f5ddf3fff412b300d1cb38c662"
+  },
+  "nodeGroups": [],
+  "id": "0EPVqSkg2BMCw9bP",
+  "tags": []
+}
